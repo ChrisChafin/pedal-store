@@ -1,25 +1,24 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Products from "./products/Products"
+import data from "./data/data.json";
 import './App.css';
+
+const PRODUCTS = data;
+//separate array for category only
+const uniqueItems = (x, i, arr) => arr.indexOf(x) === i;
+const DATA_CATEGORIES = PRODUCTS.map(prod => prod.category).filter(uniqueItems);
+
+DATA_CATEGORIES.push("All");
+DATA_CATEGORIES.sort();
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <div className="App-header">
+          <h1>EarthQuaker Devices</h1>
+        </div>
+        <Products products={PRODUCTS} dataCategories={DATA_CATEGORIES} />
       </div>
     );
   }
